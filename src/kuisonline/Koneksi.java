@@ -12,7 +12,7 @@ public class Koneksi {
    public static Connection getConnection() {
        if(conn == null) {
            try {
-               String url = "jdbc:mysql://localhost:3306/pbo";
+               String url = "jdbc:mysql://localhost:3306/kuisonline";
                String user = "root";
                String password = "";
                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
