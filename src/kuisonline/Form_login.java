@@ -27,7 +27,7 @@ public class Form_login extends javax.swing.JFrame {
         initComponents();
         conn = Koneksi.getConnection();
         
-        ResizeImage.setImageToLabel(foto_login, "/kuisonline/assets/Logo-Politeknik-Negeri-Bali.png", 174, 138);
+        ResizeImage.setImageToLabel(foto_login, "/assets/Logo-Politeknik-Negeri-Bali.png", 174, 138);
         
         password.setText("Password");
         password.setEchoChar((char)0);
@@ -112,9 +112,11 @@ public class Form_login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(253, 253, 253));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        foto_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Logo-Politeknik-Negeri-Bali.png"))); // NOI18N
         jPanel1.add(foto_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 80, 174, 138));
 
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/cross.png"))); // NOI18N
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/cross.png"))); // NOI18N
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
@@ -171,7 +173,7 @@ public class Form_login extends javax.swing.JFrame {
         login_title.setText("LOGIN");
         jPanel1.add(login_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 36, 123, 28));
 
-        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/minus.png"))); // NOI18N
+        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/minus.png"))); // NOI18N
         minimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 minimizeMouseClicked(evt);
@@ -179,7 +181,7 @@ public class Form_login extends javax.swing.JFrame {
         });
         jPanel1.add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 26, 30));
 
-        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/maximize.png"))); // NOI18N
+        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/maximize.png"))); // NOI18N
         maximize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 maximizeMouseClicked(evt);
@@ -236,10 +238,6 @@ public class Form_login extends javax.swing.JFrame {
         int y = evt.getYOnScreen(); // seberapa jauh y pindah
         this.setLocation(x - xx, y - xy); // lokasi akhir
     }//GEN-LAST:event_formMouseDragged
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        dispose(); // untuk close
-    }//GEN-LAST:event_exitMouseClicked
 
     private void nisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nisActionPerformed
         // TODO add your handling code here:
@@ -300,18 +298,6 @@ public class Form_login extends javax.swing.JFrame {
          
     }//GEN-LAST:event_button_loginActionPerformed
 
-    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
-        this.setState(Form_login.ICONIFIED);
-    }//GEN-LAST:event_minimizeMouseClicked
-
-    private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
-        if(this.getExtendedState()!= Form_login.MAXIMIZED_BOTH) {
-            this.setExtendedState(Form_login.MAXIMIZED_BOTH);
-        } else {
-            this.setExtendedState(Form_login.NORMAL);
-        }
-    }//GEN-LAST:event_maximizeMouseClicked
-
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordActionPerformed
@@ -350,6 +336,22 @@ public class Form_login extends javax.swing.JFrame {
         form_register.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_registerActionPerformed
+
+    private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
+        if(this.getExtendedState()!= Form_login.MAXIMIZED_BOTH) {
+            this.setExtendedState(Form_login.MAXIMIZED_BOTH);
+        } else {
+            this.setExtendedState(Form_login.NORMAL);
+        }
+    }//GEN-LAST:event_maximizeMouseClicked
+
+    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
+        this.setState(Form_login.ICONIFIED);
+    }//GEN-LAST:event_minimizeMouseClicked
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        dispose(); // untuk close
+    }//GEN-LAST:event_exitMouseClicked
 
     /**
      * @param args the command line arguments

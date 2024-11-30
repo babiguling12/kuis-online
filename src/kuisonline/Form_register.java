@@ -104,7 +104,7 @@ public class Form_register extends javax.swing.JFrame {
             }
         });
 
-        foto_register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/register.jpg"))); // NOI18N
+        foto_register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/register.jpg"))); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 34)); // NOI18N
@@ -174,16 +174,16 @@ public class Form_register extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Password");
 
-        jexit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/cross.png"))); // NOI18N
+        jexit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/cross.png"))); // NOI18N
         jexit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jexitMouseClicked(evt);
             }
         });
 
-        jmaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/maximize.png"))); // NOI18N
+        jmaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/maximize.png"))); // NOI18N
 
-        jminimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/minimize-sign.png"))); // NOI18N
+        jminimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/minus.png"))); // NOI18N
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
@@ -297,7 +297,7 @@ public class Form_register extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(jButton1)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 370));
