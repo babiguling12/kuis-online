@@ -27,7 +27,7 @@ public class Form_login extends javax.swing.JFrame {
         initComponents();
         conn = Koneksi.getConnection();
         
-        ResizeImage.setImageToLabel(foto_login, "/assets/Logo-Politeknik-Negeri-Bali.png", 174, 138);
+        ResizeImage.setImageToLabel(foto_login, "/kuisonline/assets/Logo-Politeknik-Negeri-Bali.png", 174, 170);
         
         password.setText("Password");
         password.setEchoChar((char)0);
@@ -113,10 +113,10 @@ public class Form_login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(253, 253, 253));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        foto_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Logo-Politeknik-Negeri-Bali.png"))); // NOI18N
-        jPanel1.add(foto_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(279, 80, 174, 138));
+        foto_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/Logo-Politeknik-Negeri-Bali.png"))); // NOI18N
+        jPanel1.add(foto_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 174, 170));
 
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/cross.png"))); // NOI18N
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/cross.png"))); // NOI18N
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
@@ -173,7 +173,7 @@ public class Form_login extends javax.swing.JFrame {
         login_title.setText("LOGIN");
         jPanel1.add(login_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 36, 123, 28));
 
-        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/minus.png"))); // NOI18N
+        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/minus.png"))); // NOI18N
         minimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 minimizeMouseClicked(evt);
@@ -181,7 +181,7 @@ public class Form_login extends javax.swing.JFrame {
         });
         jPanel1.add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 26, 30));
 
-        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/maximize.png"))); // NOI18N
+        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/maximize.png"))); // NOI18N
         maximize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 maximizeMouseClicked(evt);
@@ -262,7 +262,9 @@ public class Form_login extends javax.swing.JFrame {
         try {
             char[] pass = password.getPassword();
             String nisDB = null;
+            String nameDB = null;
             String passDB = null;
+            String roleDB = null;
             int found = 0;
             
             String query = "SELECT * FROM pengguna WHERE nis = ? ";
@@ -272,13 +274,20 @@ public class Form_login extends javax.swing.JFrame {
             
             while(rs.next()) {
                 nisDB = rs.getString("nis");
+                nameDB =  rs.getString("name");
                 passDB = rs.getString("password");
+                roleDB = rs.getString("role");
                 found = 1;
             }
             
             if(found == 1 && Arrays.equals(pass, passDB.toCharArray())){
-                Dashboard dashboard = new Dashboard();
-                dashboard.setVisible(true);
+                if("admin".equalsIgnoreCase(roleDB)) {
+                    DashboardAdmin admin = new DashboardAdmin(nameDB);
+                    admin.setVisible(true);
+                } else if("siswa".equalsIgnoreCase(roleDB)) {
+                    DashboardSiswa siswa = new DashboardSiswa(nameDB);
+                    siswa.setVisible(true);
+                }
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong NIS or password!", "Message", JOptionPane.ERROR_MESSAGE);

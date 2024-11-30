@@ -104,7 +104,7 @@ public class Form_register extends javax.swing.JFrame {
             }
         });
 
-        foto_register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/register.jpg"))); // NOI18N
+        foto_register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/register.jpg"))); // NOI18N
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei", 1, 34)); // NOI18N
@@ -174,16 +174,16 @@ public class Form_register extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Password");
 
-        jexit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/cross.png"))); // NOI18N
+        jexit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/cross.png"))); // NOI18N
         jexit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jexitMouseClicked(evt);
             }
         });
 
-        jmaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/maximize.png"))); // NOI18N
+        jmaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/maximize.png"))); // NOI18N
 
-        jminimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/minus.png"))); // NOI18N
+        jminimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/minus.png"))); // NOI18N
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
@@ -205,7 +205,7 @@ public class Form_register extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pbolanjut/img/eye.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/eye.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
