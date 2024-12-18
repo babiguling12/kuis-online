@@ -82,22 +82,35 @@ public class Form_login extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        foto_login = new javax.swing.JLabel();
-        exit = new javax.swing.JLabel();
-        nis = new java.awt.TextField();
-        password = new javax.swing.JPasswordField();
-        button_login = new javax.swing.JButton();
-        login_title = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        Header = new javax.swing.JPanel();
+        minbtn = new javax.swing.JPanel();
         minimize = new javax.swing.JLabel();
+        maxbtn = new javax.swing.JPanel();
         maximize = new javax.swing.JLabel();
+        exitbtn = new javax.swing.JPanel();
+        exit = new javax.swing.JLabel();
+        Content = new javax.swing.JPanel();
+        foto_login = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        logopanel = new javax.swing.JPanel();
+        login_title = new javax.swing.JLabel();
+        form = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        nis = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         show_password = new javax.swing.JCheckBox();
+        button_login = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btn_register = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 500));
+        setSize(new java.awt.Dimension(800, 500));
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 formMouseDragged(evt);
@@ -108,23 +121,96 @@ public class Form_login extends javax.swing.JFrame {
                 formMousePressed(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(253, 253, 253));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(new java.awt.BorderLayout());
 
-        foto_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/Logo-Politeknik-Negeri-Bali.png"))); // NOI18N
-        jPanel1.add(foto_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 174, 170));
+        Header.setBackground(new java.awt.Color(204, 204, 255));
+        Header.setPreferredSize(new java.awt.Dimension(500, 30));
+        Header.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 0));
 
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/cross.png"))); // NOI18N
+        minbtn.setBackground(new java.awt.Color(204, 204, 255));
+        minbtn.setPreferredSize(new java.awt.Dimension(30, 30));
+        minbtn.setLayout(new java.awt.BorderLayout());
+
+        minimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/minimize.png"))); // NOI18N
+        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                minimizeMouseClicked(evt);
+            }
+        });
+        minbtn.add(minimize, java.awt.BorderLayout.CENTER);
+
+        Header.add(minbtn);
+
+        maxbtn.setBackground(new java.awt.Color(204, 204, 255));
+        maxbtn.setLayout(new java.awt.BorderLayout());
+
+        maximize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/maximize.png"))); // NOI18N
+        maximize.setPreferredSize(new java.awt.Dimension(30, 30));
+        maximize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                maximizeMouseClicked(evt);
+            }
+        });
+        maxbtn.add(maximize, java.awt.BorderLayout.CENTER);
+
+        Header.add(maxbtn);
+
+        exitbtn.setBackground(new java.awt.Color(204, 204, 255));
+        exitbtn.setLayout(new java.awt.BorderLayout());
+
+        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/exit.png"))); // NOI18N
+        exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        exit.setPreferredSize(new java.awt.Dimension(30, 30));
         exit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitMouseClicked(evt);
             }
         });
-        jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 6, 26, -1));
+        exitbtn.add(exit, java.awt.BorderLayout.CENTER);
+
+        Header.add(exitbtn);
+
+        jPanel4.add(Header, java.awt.BorderLayout.PAGE_START);
+
+        Content.setBackground(new java.awt.Color(253, 253, 253));
+        Content.setLayout(new java.awt.BorderLayout());
+
+        foto_login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Content.add(foto_login, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setBackground(new java.awt.Color(253, 253, 253));
+        jPanel1.setPreferredSize(new java.awt.Dimension(240, 270));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        logopanel.setBackground(new java.awt.Color(253, 253, 253));
+
+        login_title.setFont(new java.awt.Font("Microsoft YaHei", 1, 34)); // NOI18N
+        login_title.setForeground(new java.awt.Color(0, 204, 204));
+        login_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        login_title.setText("KUISIS");
+        login_title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        logopanel.add(login_title);
+
+        jPanel1.add(logopanel, java.awt.BorderLayout.PAGE_START);
+
+        form.setBackground(new java.awt.Color(253, 253, 253));
+        form.setPreferredSize(new java.awt.Dimension(240, 100));
+        java.awt.GridBagLayout formLayout = new java.awt.GridBagLayout();
+        formLayout.columnWidths = new int[] {2};
+        formLayout.rowHeights = new int[] {2};
+        form.setLayout(formLayout);
+
+        jPanel3.setBackground(new java.awt.Color(253, 253, 253));
+        jPanel3.setPreferredSize(new java.awt.Dimension(180, 140));
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 8));
 
         nis.setText("NIS");
+        nis.setPreferredSize(new java.awt.Dimension(180, 28));
         nis.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 nisFocusGained(evt);
@@ -138,10 +224,10 @@ public class Form_login extends javax.swing.JFrame {
                 nisActionPerformed(evt);
             }
         });
-        jPanel1.add(nis, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 106, 179, 32));
+        jPanel3.add(nis);
 
-        password.setBackground(new java.awt.Color(255, 255, 255));
         password.setText("Password");
+        password.setPreferredSize(new java.awt.Dimension(180, 28));
         password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordFocusGained(evt);
@@ -155,41 +241,13 @@ public class Form_login extends javax.swing.JFrame {
                 passwordActionPerformed(evt);
             }
         });
-        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 160, 179, 32));
+        jPanel3.add(password);
 
-        button_login.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        button_login.setText("GO!!");
-        button_login.setToolTipText("");
-        button_login.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_loginActionPerformed(evt);
-            }
-        });
-        jPanel1.add(button_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 228, 105, 36));
-
-        login_title.setFont(new java.awt.Font("Microsoft YaHei", 1, 34)); // NOI18N
-        login_title.setForeground(new java.awt.Color(0, 204, 204));
-        login_title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        login_title.setText("LOGIN");
-        jPanel1.add(login_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 36, 123, 28));
-
-        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/minus.png"))); // NOI18N
-        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                minimizeMouseClicked(evt);
-            }
-        });
-        jPanel1.add(minimize, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 26, 30));
-
-        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/maximize.png"))); // NOI18N
-        maximize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                maximizeMouseClicked(evt);
-            }
-        });
-        jPanel1.add(maximize, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 4, 26, 30));
-
+        show_password.setBackground(new java.awt.Color(253, 253, 253));
         show_password.setText("Show Password");
+        show_password.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        show_password.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        show_password.setPreferredSize(new java.awt.Dimension(300, 25));
         show_password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 show_passwordFocusGained(evt);
@@ -200,26 +258,59 @@ public class Form_login extends javax.swing.JFrame {
                 show_passwordActionPerformed(evt);
             }
         });
-        jPanel1.add(show_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+        jPanel3.add(show_password);
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Don't have an account yet?");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 150, -1));
-
-        btn_register.setBackground(new java.awt.Color(0, 153, 153));
-        btn_register.setForeground(new java.awt.Color(255, 255, 255));
-        btn_register.setText("Register");
-        btn_register.setIconTextGap(2);
-        btn_register.addActionListener(new java.awt.event.ActionListener() {
+        button_login.setBackground(new java.awt.Color(253, 253, 253));
+        button_login.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        button_login.setText("LOGIN");
+        button_login.setToolTipText("");
+        button_login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_registerActionPerformed(evt);
+                button_loginActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 80, 30));
+        jPanel3.add(button_login);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 310));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        form.add(jPanel3, gridBagConstraints);
+
+        jPanel5.setBackground(new java.awt.Color(253, 253, 253));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        jLabel2.setText("Tidak punya akun?");
+        jLabel2.setPreferredSize(new java.awt.Dimension(102, 16));
+        jPanel5.add(jLabel2);
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 204));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Register");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setPreferredSize(new java.awt.Dimension(47, 16));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel5.add(jLabel1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
+        form.add(jPanel5, gridBagConstraints);
+
+        jPanel1.add(form, java.awt.BorderLayout.CENTER);
+
+        Content.add(jPanel1, java.awt.BorderLayout.LINE_START);
+
+        jPanel4.add(Content, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel4);
 
         pack();
         setLocationRelativeTo(null);
@@ -238,24 +329,6 @@ public class Form_login extends javax.swing.JFrame {
         int y = evt.getYOnScreen(); // seberapa jauh y pindah
         this.setLocation(x - xx, y - xy); // lokasi akhir
     }//GEN-LAST:event_formMouseDragged
-
-    private void nisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nisActionPerformed
-
-    private void nisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusGained
-        String email_focus = nis.getText();
-        if(email_focus.equals("NIS")) {
-            nis.setText("");
-        }
-    }//GEN-LAST:event_nisFocusGained
-
-    private void nisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusLost
-        String email_lost = nis.getText();
-        if(email_lost.equals("")||email_lost.equals("NIS")) {
-            nis.setText("NIS");
-        }
-    }//GEN-LAST:event_nisFocusLost
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
         
@@ -340,12 +413,6 @@ public class Form_login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_show_passwordFocusGained
 
-    private void btn_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registerActionPerformed
-        Form_register form_register = new Form_register();
-        form_register.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btn_registerActionPerformed
-
     private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
         if(this.getExtendedState()!= Form_login.MAXIMIZED_BOTH) {
             this.setExtendedState(Form_login.MAXIMIZED_BOTH);
@@ -361,6 +428,30 @@ public class Form_login extends javax.swing.JFrame {
     private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
         dispose(); // untuk close
     }//GEN-LAST:event_exitMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        Form_register form_register = new Form_register();
+        form_register.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void nisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nisActionPerformed
+
+    private void nisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusGained
+        String nis_focus = nis.getText();
+        if(nis_focus.equals("NIS")) {
+            nis.setText("");
+        }
+    }//GEN-LAST:event_nisFocusGained
+
+    private void nisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusLost
+        String email_lost = nis.getText();
+        if(email_lost.equals("")||email_lost.equals("NIS")) {
+            nis.setText("NIS");
+        }
+    }//GEN-LAST:event_nisFocusLost
 
     /**
      * @param args the command line arguments
@@ -401,16 +492,26 @@ public class Form_login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_register;
+    private javax.swing.JPanel Content;
+    private javax.swing.JPanel Header;
     private javax.swing.JButton button_login;
     private javax.swing.JLabel exit;
+    private javax.swing.JPanel exitbtn;
+    private javax.swing.JPanel form;
     private javax.swing.JLabel foto_login;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel login_title;
+    private javax.swing.JPanel logopanel;
+    private javax.swing.JPanel maxbtn;
     private javax.swing.JLabel maximize;
+    private javax.swing.JPanel minbtn;
     private javax.swing.JLabel minimize;
-    private java.awt.TextField nis;
+    private javax.swing.JTextField nis;
     private javax.swing.JPasswordField password;
     private javax.swing.JCheckBox show_password;
     // End of variables declaration//GEN-END:variables
