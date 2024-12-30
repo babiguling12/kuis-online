@@ -28,7 +28,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }
     
     void refreshTableDaftarSoal() {
-        model = new DefaultTableModel(new Object[]{"Pertanyaan", "Action"}, 0);
+        model = new DefaultTableModel(new Object[]{"No", "Pertanyaan", "Action"}, 0);
         
         tabelDaftarSoal.setModel(model);
         model.getDataVector().removeAllElements();
@@ -36,6 +36,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         if(kuis != null) {
             for(int i = 0; i < kuis.jumPertanyaan; i++) {
                 Object[] data = {
+                    i+1,
                     pertanyaan[i].pertanyaan,
                     "edit"
                 };
@@ -88,6 +89,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup2 = new javax.swing.ButtonGroup();
         TopBar = new javax.swing.JPanel();
         hellotext = new javax.swing.JLabel();
         SideBar = new javax.swing.JPanel();
@@ -116,33 +118,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         MainContent_Kuis = new javax.swing.JPanel();
         Header_BuatSoal = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        FormSoal = new javax.swing.JPanel();
-        Form2 = new javax.swing.JPanel();
-        JudulSoal1 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        Input_Pertanyaan = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        Jawaban = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        opsi1 = new javax.swing.JPanel();
-        opsibenar1 = new javax.swing.JCheckBox();
-        jTextField1 = new javax.swing.JTextField();
-        opsi2 = new javax.swing.JPanel();
-        opsibenar2 = new javax.swing.JCheckBox();
-        jTextField2 = new javax.swing.JTextField();
-        opsi3 = new javax.swing.JPanel();
-        opsibenar3 = new javax.swing.JCheckBox();
-        jTextField3 = new javax.swing.JTextField();
-        opsi4 = new javax.swing.JPanel();
-        opsibenar4 = new javax.swing.JCheckBox();
-        jTextField4 = new javax.swing.JTextField();
-        opsi5 = new javax.swing.JPanel();
-        opsibenar5 = new javax.swing.JCheckBox();
-        jTextField5 = new javax.swing.JTextField();
-        jPanel10 = new javax.swing.JPanel();
-        jPanel11 = new javax.swing.JPanel();
-        nextbtn1 = new javax.swing.JButton();
         FormKuis = new javax.swing.JPanel();
         Form1 = new javax.swing.JPanel();
         Form3 = new javax.swing.JPanel();
@@ -155,7 +130,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         WaktuPengerjaan1 = new javax.swing.JPanel();
         Input_JumlahSoal = new javax.swing.JSpinner();
-        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         WaktuPengerjaan2 = new javax.swing.JPanel();
         Input_WaktuPengerjaan = new javax.swing.JSpinner();
         jLabel18 = new javax.swing.JLabel();
@@ -164,6 +139,27 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         simpankuis = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jTextField1 = new javax.swing.JTextField();
+        jPanel18 = new javax.swing.JPanel();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jTextField2 = new javax.swing.JTextField();
+        jPanel19 = new javax.swing.JPanel();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jTextField3 = new javax.swing.JTextField();
+        jPanel20 = new javax.swing.JPanel();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jTextField4 = new javax.swing.JTextField();
+        jPanel21 = new javax.swing.JPanel();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jTextField5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -323,141 +319,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         MainContent_Kuis.add(Header_BuatSoal, java.awt.BorderLayout.PAGE_START);
 
-        FormSoal.setBackground(new java.awt.Color(255, 255, 255));
-        FormSoal.setPreferredSize(new java.awt.Dimension(740, 140));
-        FormSoal.setLayout(new java.awt.CardLayout(10, 10));
-
-        Form2.setBackground(new java.awt.Color(255, 255, 255));
-        Form2.setLayout(new java.awt.BorderLayout());
-
-        JudulSoal1.setBackground(new java.awt.Color(255, 255, 255));
-        JudulSoal1.setPreferredSize(new java.awt.Dimension(66, 68));
-        JudulSoal1.setLayout(new java.awt.BorderLayout());
-
-        jLabel13.setText("Pertanyaan");
-        JudulSoal1.add(jLabel13, java.awt.BorderLayout.PAGE_START);
-
-        Input_Pertanyaan.setViewportView(jTextPane1);
-
-        JudulSoal1.add(Input_Pertanyaan, java.awt.BorderLayout.CENTER);
-
-        Form2.add(JudulSoal1, java.awt.BorderLayout.PAGE_START);
-
-        Jawaban.setBackground(new java.awt.Color(255, 255, 255));
-        Jawaban.setLayout(new java.awt.BorderLayout());
-
-        jLabel14.setText("Jawaban");
-        Jawaban.add(jLabel14, java.awt.BorderLayout.PAGE_START);
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new java.awt.GridLayout(0, 1));
-
-        opsi1.setBackground(new java.awt.Color(255, 255, 255));
-        opsi1.setLayout(new java.awt.BorderLayout());
-
-        opsibenar1.setBackground(new java.awt.Color(255, 255, 255));
-        opsi1.add(opsibenar1, java.awt.BorderLayout.LINE_START);
-
-        jTextField1.setText("Opsi 1");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        opsi1.add(jTextField1, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(opsi1);
-
-        opsi2.setBackground(new java.awt.Color(255, 255, 255));
-        opsi2.setLayout(new java.awt.BorderLayout());
-
-        opsibenar2.setBackground(new java.awt.Color(255, 255, 255));
-        opsi2.add(opsibenar2, java.awt.BorderLayout.LINE_START);
-
-        jTextField2.setText("Opsi 2");
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        opsi2.add(jTextField2, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(opsi2);
-
-        opsi3.setBackground(new java.awt.Color(255, 255, 255));
-        opsi3.setLayout(new java.awt.BorderLayout());
-
-        opsibenar3.setBackground(new java.awt.Color(255, 255, 255));
-        opsi3.add(opsibenar3, java.awt.BorderLayout.LINE_START);
-
-        jTextField3.setText("Opsi 3");
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        opsi3.add(jTextField3, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(opsi3);
-
-        opsi4.setBackground(new java.awt.Color(255, 255, 255));
-        opsi4.setLayout(new java.awt.BorderLayout());
-
-        opsibenar4.setBackground(new java.awt.Color(255, 255, 255));
-        opsi4.add(opsibenar4, java.awt.BorderLayout.LINE_START);
-
-        jTextField4.setText("Opsi 4");
-        jTextField4.setBorder(null);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        opsi4.add(jTextField4, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(opsi4);
-
-        opsi5.setBackground(new java.awt.Color(255, 255, 255));
-        opsi5.setLayout(new java.awt.BorderLayout());
-
-        opsibenar5.setBackground(new java.awt.Color(255, 255, 255));
-        opsi5.add(opsibenar5, java.awt.BorderLayout.LINE_START);
-
-        jTextField5.setText("Opsi 5");
-        jTextField5.setBorder(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        opsi5.add(jTextField5, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(opsi5);
-
-        Jawaban.add(jPanel1, java.awt.BorderLayout.CENTER);
-
-        Form2.add(Jawaban, java.awt.BorderLayout.CENTER);
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setLayout(new java.awt.CardLayout());
-
-        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel11.setLayout(new java.awt.BorderLayout());
-
-        nextbtn1.setText("Simpan");
-        jPanel11.add(nextbtn1, java.awt.BorderLayout.LINE_END);
-
-        jPanel10.add(jPanel11, "card3");
-
-        Form2.add(jPanel10, java.awt.BorderLayout.PAGE_END);
-
-        FormSoal.add(Form2, "card2");
-
-        MainContent_Kuis.add(FormSoal, java.awt.BorderLayout.CENTER);
-
         FormKuis.setBackground(new java.awt.Color(255, 255, 255));
         FormKuis.setPreferredSize(new java.awt.Dimension(740, 140));
         FormKuis.setLayout(new java.awt.CardLayout(10, 10));
@@ -505,10 +366,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         WaktuPengerjaan1.setBackground(new java.awt.Color(255, 255, 255));
         WaktuPengerjaan1.setLayout(new java.awt.BorderLayout());
+
+        Input_JumlahSoal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                Input_JumlahSoalFocusGained(evt);
+            }
+        });
         WaktuPengerjaan1.add(Input_JumlahSoal, java.awt.BorderLayout.CENTER);
 
-        jLabel17.setText("Jumlah Soal");
-        WaktuPengerjaan1.add(jLabel17, java.awt.BorderLayout.PAGE_START);
+        jLabel19.setText("Jumlah Soal");
+        WaktuPengerjaan1.add(jLabel19, java.awt.BorderLayout.PAGE_START);
 
         InputGroup2.add(WaktuPengerjaan1);
 
@@ -563,6 +430,111 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         Form1.add(jPanel5, java.awt.BorderLayout.PAGE_END);
 
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel12.setPreferredSize(new java.awt.Dimension(300, 100));
+        jPanel12.setLayout(new java.awt.BorderLayout());
+
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel13.setLayout(new java.awt.BorderLayout());
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        jPanel13.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jLabel17.setText("Pertanyaan");
+        jPanel13.add(jLabel17, java.awt.BorderLayout.PAGE_START);
+
+        jPanel12.add(jPanel13, java.awt.BorderLayout.PAGE_START);
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel14.setLayout(new java.awt.GridLayout(3, 2, 2, 2));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        buttonGroup2.add(jRadioButton1);
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRadioButton1, java.awt.BorderLayout.LINE_START);
+
+        jTextField1.setText("jTextField1");
+        jPanel1.add(jTextField1, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel1);
+
+        jPanel18.setLayout(new java.awt.BorderLayout());
+
+        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(jRadioButton2);
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
+        jPanel18.add(jRadioButton2, java.awt.BorderLayout.LINE_START);
+
+        jTextField2.setText("jTextField1");
+        jPanel18.add(jTextField2, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel18);
+
+        jPanel19.setLayout(new java.awt.BorderLayout());
+
+        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(jRadioButton3);
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
+        jPanel19.add(jRadioButton3, java.awt.BorderLayout.LINE_START);
+
+        jTextField3.setText("jTextField1");
+        jPanel19.add(jTextField3, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel19);
+
+        jPanel20.setLayout(new java.awt.BorderLayout());
+
+        jRadioButton4.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(jRadioButton4);
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
+        jPanel20.add(jRadioButton4, java.awt.BorderLayout.LINE_START);
+
+        jTextField4.setText("jTextField1");
+        jPanel20.add(jTextField4, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel20);
+
+        jPanel21.setLayout(new java.awt.BorderLayout());
+
+        jRadioButton5.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup2.add(jRadioButton5);
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
+        jPanel21.add(jRadioButton5, java.awt.BorderLayout.LINE_START);
+
+        jTextField5.setText("jTextField1");
+        jPanel21.add(jTextField5, java.awt.BorderLayout.CENTER);
+
+        jPanel14.add(jPanel21);
+
+        jPanel12.add(jPanel14, java.awt.BorderLayout.CENTER);
+
+        Form1.add(jPanel12, java.awt.BorderLayout.LINE_START);
+
         FormKuis.add(Form1, "card2");
 
         MainContent_Kuis.add(FormKuis, java.awt.BorderLayout.CENTER);
@@ -571,26 +543,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void Input_JudulKuisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Input_JudulKuisActionPerformed
         // TODO add your handling code here:
@@ -611,6 +563,33 @@ public class DashboardAdmin extends javax.swing.JFrame {
         
         refreshTableDaftarSoal();
     }//GEN-LAST:event_simpankuisActionPerformed
+
+    private void Input_JumlahSoalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Input_JumlahSoalFocusGained
+//        int input = Integer.parseInt( Input_JumlahSoal.getValue().toString());
+//        if(input == 0) {
+//            Input_JumlahSoal.setValue(Integer.toString());
+//        } 
+    }//GEN-LAST:event_Input_JumlahSoalFocusGained
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -653,20 +632,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel CardGrid;
     private javax.swing.JLabel DashboardText;
     private javax.swing.JPanel Form1;
-    private javax.swing.JPanel Form2;
     private javax.swing.JPanel Form3;
     private javax.swing.JPanel FormKuis;
-    private javax.swing.JPanel FormSoal;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Header_BuatSoal;
     private javax.swing.JPanel InputGroup2;
     private javax.swing.JTextField Input_JudulKuis;
     private javax.swing.JSpinner Input_JumlahSoal;
     private javax.swing.JComboBox<String> Input_KategoriKuis;
-    private javax.swing.JScrollPane Input_Pertanyaan;
     private javax.swing.JSpinner Input_WaktuPengerjaan;
-    private javax.swing.JPanel Jawaban;
-    private javax.swing.JPanel JudulSoal1;
     private javax.swing.JPanel JudulSoal2;
     private javax.swing.JPanel KategoriSoal1;
     private javax.swing.JPanel MainContent_Kuis;
@@ -679,14 +653,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel TopBar;
     private javax.swing.JPanel WaktuPengerjaan1;
     private javax.swing.JPanel WaktuPengerjaan2;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JLabel hellotext;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -695,9 +669,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -705,24 +684,19 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JButton nextbtn1;
-    private javax.swing.JPanel opsi1;
-    private javax.swing.JPanel opsi2;
-    private javax.swing.JPanel opsi3;
-    private javax.swing.JPanel opsi4;
-    private javax.swing.JPanel opsi5;
-    private javax.swing.JCheckBox opsibenar1;
-    private javax.swing.JCheckBox opsibenar2;
-    private javax.swing.JCheckBox opsibenar3;
-    private javax.swing.JCheckBox opsibenar4;
-    private javax.swing.JCheckBox opsibenar5;
     private javax.swing.JButton simpankuis;
     private javax.swing.JTable tabelDaftarSoal;
     // End of variables declaration//GEN-END:variables
