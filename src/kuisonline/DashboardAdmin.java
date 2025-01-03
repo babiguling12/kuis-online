@@ -4,8 +4,10 @@
  */
 package kuisonline;
 
-import java.awt.Dimension;
-import java.util.List;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,26 +19,42 @@ public class DashboardAdmin extends javax.swing.JFrame {
     Kuis kuis;
     Pertanyaan pertanyaan[];
     DefaultTableModel model;
-    
+
+    private Connection conn;
+
     /**
      * Creates new form Dashboard
      */
     public DashboardAdmin(String name) {
+        conn = Koneksi.getConnection();
+
         initComponents();
         refreshTableDaftarSoal();
         hellotext.setText("Halo, " + name + "!");
+
+        try {
+            String query = "SELECT * FROM kategori";
+            PreparedStatement pst = conn.prepareStatement(query);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Input_KategoriKuis.addItem(rs.getString("nama_kategori"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-    
+
     void refreshTableDaftarSoal() {
         model = new DefaultTableModel(new Object[]{"No", "Pertanyaan", "Action"}, 0);
-        
+
         tabelDaftarSoal.setModel(model);
         model.getDataVector().removeAllElements();
-        
-        if(kuis != null) {
-            for(int i = 0; i < kuis.jumPertanyaan; i++) {
+
+        if (kuis != null) {
+            for (int i = 0; i < kuis.jumPertanyaan; i++) {
                 Object[] data = {
-                    i+1,
+                    i + 1,
                     pertanyaan[i].pertanyaan,
                     "edit"
                 };
@@ -44,7 +62,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         }
     }
-    
+
     //Edit container daftar soal
 //    void editSoalContainer(int jumlahSoal) {
 //        DaftarSoal.setPreferredSize(new Dimension(DaftarSoal.getWidth(), 50*jumlahSoal));
@@ -79,7 +97,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
 //        
 //        jScrollPane1.revalidate();
 //    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -351,7 +368,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         KategoriSoal1.setBackground(new java.awt.Color(255, 255, 255));
         KategoriSoal1.setLayout(new java.awt.BorderLayout());
 
-        Input_KategoriKuis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori", "Matematika", "Bahasa Indonesia", "Bahasa Inggris" }));
+        Input_KategoriKuis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
         Input_KategoriKuis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Input_KategoriKuisActionPerformed(evt);
@@ -553,19 +570,65 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_Input_KategoriKuisActionPerformed
 
     private void simpankuisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpankuisActionPerformed
-        String  judulkuis       = Input_JudulKuis.getText();
-        int     kategorikuis    = Input_KategoriKuis.getSelectedIndex();
-        int     jumlahsoal      = (int) Input_JumlahSoal.getValue();
-        int     waktupengerjaan = (int) Input_WaktuPengerjaan.getValue();
-        
-        kuis = new Kuis(0, judulkuis, jumlahsoal, waktupengerjaan, kategorikuis);
-        pertanyaan = kuis.buatPertanyaan();
-        
+        Boolean dibuat = false;
+
+        String judulkuis = Input_JudulKuis.getText();
+        int kategorikuis = Input_KategoriKuis.getSelectedIndex();
+        int waktupengerjaan = (int) Input_WaktuPengerjaan.getValue();
+
+        if (!dibuat) {
+            int jumlahsoal = (int) Input_JumlahSoal.getValue();
+            kuis = new Kuis(0, judulkuis, jumlahsoal, waktupengerjaan, kategorikuis);
+            pertanyaan = kuis.buatPertanyaan();
+            Input_JumlahSoal.setEnabled(false);
+            dibuat = true;
+
+            // Simpan data kuis
+            try {
+                String query;
+                PreparedStatement pst;
+                int kuisid = 0;
+                
+                query = "INSERT INTO kuis (judul, jumlah_pertanyaan, waktu_pengerjaan, id_kategori) values (?, ?, ?, ?)";
+                pst = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+                pst.setString(1, kuis.judul);
+                pst.setInt(2, kuis.jumPertanyaan);
+                pst.setInt(3, kuis.waktuPengerjaan);
+                pst.setInt(4, kuis.kategori);
+                
+                pst.executeUpdate();
+                ResultSet rs = pst.getGeneratedKeys();
+                while(rs.next()) {
+                    kuisid = rs.getInt(1);
+                }
+
+                for (int i = 0; i < pertanyaan.length; i++) {
+                    query = "INSERT INTO pertanyaan (teks_pertanyaan, jawabanA, jawabanB, jawabanC, jawabanD, jawabanE, jawaban_benar, id_kuis) values (?, ?, ?, ?, ?, ?, ?, ?)";
+                    pst = conn.prepareStatement(query);
+                    
+                    pst.setString(1, pertanyaan[i].pertanyaan);
+                    pst.setString(2, pertanyaan[i].jawabanA);
+                    pst.setString(3, pertanyaan[i].jawabanB);
+                    pst.setString(4, pertanyaan[i].jawabanC);
+                    pst.setString(5, pertanyaan[i].jawabanD);
+                    pst.setString(6, pertanyaan[i].jawabanE);
+                    pst.setString(7, pertanyaan[i].jawabanbenar);
+                    pst.setInt(8, kuisid);
+                    
+                    pst.executeUpdate();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
         refreshTableDaftarSoal();
     }//GEN-LAST:event_simpankuisActionPerformed
 
     private void Input_JumlahSoalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Input_JumlahSoalFocusGained
-//        int input = Integer.parseInt( Input_JumlahSoal.getValue().toString());
+//        int input = Integetr.parseInt( Input_JumlahSoal.getValue().toString());
 //        if(input == 0) {
 //            Input_JumlahSoal.setValue(Integer.toString());
 //        } 
@@ -597,7 +660,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstateFormBuatlapsed" desc=" Look and feel setting code (optional) ">
-   /* If Nimbus (introduced in Java SE 6) is not available, stayFormBuat the default look and feel.
+        /* If Nimbus (introduced in Java SE 6) is not available, stayFormBuat the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {

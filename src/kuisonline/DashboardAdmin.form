@@ -618,11 +618,8 @@
                             <Component class="javax.swing.JComboBox" name="Input_KategoriKuis">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="4">
+                                  <StringArray count="1">
                                     <StringItem index="0" value="Pilih Kategori"/>
-                                    <StringItem index="1" value="Matematika"/>
-                                    <StringItem index="2" value="Bahasa Indonesia"/>
-                                    <StringItem index="3" value="Bahasa Inggris"/>
                                   </StringArray>
                                 </Property>
                               </Properties>

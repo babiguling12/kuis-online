@@ -10,6 +10,10 @@ package kuisonline;
  */
 public class Pertanyaan {
     String pertanyaan = "Isi Pertanyaan";
-    String jawaban[];
-    Boolean jawabanbenar[];
+    String jawabanA = "Teks Jawaban A";
+    String jawabanB = "Teks Jawaban B";
+    String jawabanC = "Teks Jawaban C";
+    String jawabanD = "Teks Jawaban D";
+    String jawabanE = "Teks Jawaban E";
+    String jawabanbenar = "a";
 }
