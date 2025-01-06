@@ -9,6 +9,7 @@ package kuisonline;
  * @author TUF GAMING
  */
 public class Pertanyaan {
+    int idPertanyaan;
     String pertanyaan = "Isi Pertanyaan";
     String jawabanA = "Teks Jawaban A";
     String jawabanB = "Teks Jawaban B";

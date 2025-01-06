@@ -12,14 +12,14 @@ import java.util.Arrays;
  * @author TUF GAMING
  */
 public class Kuis {
-    int idPertanyaan;
+    int idKuis;
     String judul;
     int jumPertanyaan;
     int waktuPengerjaan;
     int kategori;
     
-    Kuis(int idPertanyaan, String judul, int jumPertanyaan, int waktuPengerjaan, int kategori) {
-        this.idPertanyaan = idPertanyaan;
+    Kuis(int idKuis, String judul, int jumPertanyaan, int waktuPengerjaan, int kategori) {
+        this.idKuis = idKuis;
         this.judul = judul;
         this.jumPertanyaan = jumPertanyaan;
         this.waktuPengerjaan = waktuPengerjaan;
