@@ -1,24 +1,30 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package kuisonline;
+package kuisonline.view;
 
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
+import kuisonline.util.ResizeImage;
+import kuisonline.controller.PenggunaDAO;
+import kuisonline.model.Pengguna;
 
-public class Form_register extends javax.swing.JFrame {
+/**
+ *
+ * @author TUF GAMING
+ */
+public class Register extends javax.swing.JPanel {
+
+    private Auth mainFrame;
 
     /**
-     * Creates new form Form_register
+     * Creates new form Login
      */
-    private Connection conn;
-    
-    public Form_register() {
+    public Register(Auth mainFrame) {
+        this.mainFrame = mainFrame;
+
         initComponents();
-        conn = Koneksi.getConnection();
         
         ResizeImage.setImageToLabel(foto_register,"/kuisonline/assets/register.jpg", 220, 220);
         
@@ -57,10 +63,8 @@ public class Form_register extends javax.swing.JFrame {
                 }
             }
         });
-        
     }
-    
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,8 +73,8 @@ public class Form_register extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
         foto_register = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jnis = new javax.swing.JTextField();
@@ -87,22 +91,6 @@ public class Form_register extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         show_password = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jPanel1MouseDragged(evt);
-            }
-        });
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanel1MousePressed(evt);
-            }
-        });
 
         foto_register.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/register.jpg"))); // NOI18N
 
@@ -163,18 +151,14 @@ public class Form_register extends javax.swing.JFrame {
         });
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("NIS");
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Name");
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Password");
 
-        jexit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/cross.png"))); // NOI18N
         jexit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jexitMouseClicked(evt);
@@ -183,11 +167,8 @@ public class Form_register extends javax.swing.JFrame {
 
         jmaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/maximize.png"))); // NOI18N
 
-        jminimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/minus.png"))); // NOI18N
-
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("I have an account");
 
         jButton1.setBackground(new java.awt.Color(0, 153, 153));
@@ -207,11 +188,11 @@ public class Form_register extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/eye.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jminimize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -219,17 +200,17 @@ public class Form_register extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jexit)
                 .addGap(15, 15, 15))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addComponent(foto_register, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(show_password)
@@ -237,17 +218,17 @@ public class Form_register extends javax.swing.JFrame {
                                 .addComponent(jLabel5))
                             .addComponent(jnis, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jname, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel4)))))
                 .addGap(27, 27, 27))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,22 +237,22 @@ public class Form_register extends javax.swing.JFrame {
                 .addComponent(btn_register, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(132, 132, 132))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(foto_register, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jexit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jmaximize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(24, 24, 24))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jminimize)
                                 .addGap(18, 18, 18)))
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,84 +267,52 @@ public class Form_register extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel4)
                         .addGap(4, 4, 4)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(show_password)))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btn_register, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(jButton1)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 370));
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    int xx, xy;
-    
-    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
-        xx = evt.getX();
-        xy = evt.getY();
-    }//GEN-LAST:event_jPanel1MousePressed
-
-    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
-        int x = evt.getXOnScreen();
-        int y = evt.getYOnScreen();
-        this.setLocation(x - xx, y - xy);
-    }//GEN-LAST:event_jPanel1MouseDragged
-
-    private void jpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jpasswordActionPerformed
 
     private void jnisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jnisFocusGained
-        
+
     }//GEN-LAST:event_jnisFocusGained
 
     private void jnisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jnisFocusLost
-        
+
     }//GEN-LAST:event_jnisFocusLost
+
+    private void jnisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jnisActionPerformed
+
+    private void jnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jnameFocusGained
+
+    }//GEN-LAST:event_jnameFocusGained
+
+    private void jnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jnameFocusLost
+
+    }//GEN-LAST:event_jnameFocusLost
 
     private void jnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jnameActionPerformed
 
-    private void jnameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jnameFocusGained
-        
-    }//GEN-LAST:event_jnameFocusGained
-
-    private void jnameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jnameFocusLost
-        
-    }//GEN-LAST:event_jnameFocusLost
-
-    private void jpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpasswordFocusGained
-       
-    }//GEN-LAST:event_jpasswordFocusGained
-
-    private void jpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpasswordFocusLost
-        
-    }//GEN-LAST:event_jpasswordFocusLost
-
     private void btn_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registerActionPerformed
-        
+
         try {
             String nis = jnis.getText();
             String name = jname.getText();
-            String password = jpassword.getText();
-        
-            String query = "INSERT INTO pengguna(nis,name,password) VALUES(?, ?, ?)";
-            PreparedStatement pst = conn.prepareStatement(query);
-            pst.setString(1, nis);
-            pst.setString(2, name);
-            pst.setString(3, password);
-            
+            String password = new String(jpassword.getPassword());
+
             if(nis.equals("")){
                 JOptionPane.showMessageDialog(null, "Fill out NIS!!", "Message", JOptionPane.ERROR_MESSAGE);
             } else if(name.equals("")) {
@@ -371,36 +320,41 @@ public class Form_register extends javax.swing.JFrame {
             } else if(password.equals("")) {
                 JOptionPane.showMessageDialog(null, "Fill out Password!!", "Message", JOptionPane.ERROR_MESSAGE);
             } else {
-                int insertedRow = pst.executeUpdate(); // Memasukkan inputan ke database
+                Pengguna pengguna = new Pengguna();
+                pengguna.setName(name);
+                pengguna.setNis(nis);
+                pengguna.setPassword(password);
                 
-                if(insertedRow > 0) {
+                if(PenggunaDAO.registerPengguna(pengguna)) {
                     JOptionPane.showMessageDialog(null, "Register Successful!");
-                    Form_login form_login = new Form_login();
-                    form_login.setVisible(true);
-                    this.dispose();
-                }  
+                    mainFrame.login();
+                }
             }
-            
-            pst.close();
-           
+
         } catch(Exception e) {
             e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_btn_registerActionPerformed
 
-    private void jnisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnisActionPerformed
+    private void jpasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpasswordFocusGained
+
+    }//GEN-LAST:event_jpasswordFocusGained
+
+    private void jpasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpasswordFocusLost
+
+    }//GEN-LAST:event_jpasswordFocusLost
+
+    private void jpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jnisActionPerformed
+    }//GEN-LAST:event_jpasswordActionPerformed
 
     private void jexitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jexitMouseClicked
-        dispose();
+        mainFrame.dispose();
     }//GEN-LAST:event_jexitMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Form_login form_login = new Form_login();
-        form_login.setVisible(true);
-        this.dispose();
+        mainFrame.login();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void show_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_passwordActionPerformed
@@ -411,41 +365,6 @@ public class Form_register extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_show_passwordActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Form_register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Form_register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Form_register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Form_register.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Form_register().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_register;
@@ -457,7 +376,6 @@ public class Form_register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jexit;
     private javax.swing.JLabel jmaximize;
     private javax.swing.JLabel jminimize;
@@ -466,6 +384,4 @@ public class Form_register extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpassword;
     private javax.swing.JCheckBox show_password;
     // End of variables declaration//GEN-END:variables
-
-    
 }

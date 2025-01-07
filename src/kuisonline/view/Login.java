@@ -1,39 +1,39 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package kuisonline;
+package kuisonline.view;
 
 import java.awt.event.KeyEvent;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import java.util.Arrays;
+import kuisonline.util.ResizeImage;
+import kuisonline.controller.PenggunaDAO;
+import kuisonline.model.Pengguna;
+import kuisonline.view.admin.DashboardAdmin;
 
 /**
  *
- * @author Gustu
+ * @author TUF GAMING
  */
-public class Form_login extends javax.swing.JFrame {
-    
+public class Login extends javax.swing.JPanel {
+
+    private Auth mainFrame;
+
     /**
-     * Creates new form form_login
+     * Creates new form Login
      */
-    
-    private Connection conn;
-    
-    public Form_login() {
+    public Login(Auth mainFrame) {
+        this.mainFrame = mainFrame;
+
         initComponents();
-        conn = Koneksi.getConnection();
         
         ResizeImage.setImageToLabel(foto_login, "/kuisonline/assets/Logo-Politeknik-Negeri-Bali.png", 174, 170);
-        
+
         password.setText("Password");
-        password.setEchoChar((char)0);
-        
+        password.setEchoChar((char) 0);
+
         foto_login.requestFocusInWindow();
-        
+
         nis.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) { // berfungsi untuk menangani logika ketika tombol ditekan
@@ -42,7 +42,7 @@ public class Form_login extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         password.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -51,19 +51,19 @@ public class Form_login extends javax.swing.JFrame {
                 }
             }
         });
-        
+
         password.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyTyped(java.awt.event.KeyEvent evt) { // keyTyped berfungsi untuk menangkap input karakter
                 if (show_password.isSelected()) {
-                    password.setEchoChar((char) 0);  
+                    password.setEchoChar((char) 0);
                 } else {
                     password.setEchoChar('*');
                 }
             }
         });
-        
-         show_password.addKeyListener(new java.awt.event.KeyAdapter() {
+
+        show_password.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -71,9 +71,8 @@ public class Form_login extends javax.swing.JFrame {
                 }
             }
         });
-         
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,7 +83,6 @@ public class Form_login extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel4 = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
         minbtn = new javax.swing.JPanel();
         minimize = new javax.swing.JLabel();
@@ -107,23 +105,7 @@ public class Form_login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 500));
-        setSize(new java.awt.Dimension(800, 500));
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                formMouseDragged(evt);
-            }
-        });
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                formMousePressed(evt);
-            }
-        });
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
-
-        jPanel4.setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.BorderLayout());
 
         Header.setBackground(new java.awt.Color(204, 204, 255));
         Header.setPreferredSize(new java.awt.Dimension(500, 30));
@@ -175,7 +157,7 @@ public class Form_login extends javax.swing.JFrame {
 
         Header.add(exitbtn);
 
-        jPanel4.add(Header, java.awt.BorderLayout.PAGE_START);
+        add(Header, java.awt.BorderLayout.PAGE_START);
 
         Content.setBackground(new java.awt.Color(253, 253, 253));
         Content.setLayout(new java.awt.BorderLayout());
@@ -200,10 +182,7 @@ public class Form_login extends javax.swing.JFrame {
 
         form.setBackground(new java.awt.Color(253, 253, 253));
         form.setPreferredSize(new java.awt.Dimension(240, 100));
-        java.awt.GridBagLayout formLayout = new java.awt.GridBagLayout();
-        formLayout.columnWidths = new int[] {2};
-        formLayout.rowHeights = new int[] {2};
-        form.setLayout(formLayout);
+        form.setLayout(new java.awt.GridBagLayout());
 
         jPanel3.setBackground(new java.awt.Color(253, 253, 253));
         jPanel3.setPreferredSize(new java.awt.Dimension(180, 140));
@@ -308,85 +287,46 @@ public class Form_login extends javax.swing.JFrame {
 
         Content.add(jPanel1, java.awt.BorderLayout.LINE_START);
 
-        jPanel4.add(Content, java.awt.BorderLayout.CENTER);
-
-        getContentPane().add(jPanel4);
-
-        pack();
-        setLocationRelativeTo(null);
+        add(Content, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-  
-    int xx, xy;
-    
-    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        xx = evt.getX(); // x awal
-        xy = evt.getY(); // y awal
-    }//GEN-LAST:event_formMousePressed
+    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
+        mainFrame.setState(mainFrame.ICONIFIED);
+    }//GEN-LAST:event_minimizeMouseClicked
 
-    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        int x = evt.getXOnScreen(); // seberapa jauh x pindah
-        int y = evt.getYOnScreen(); // seberapa jauh y pindah
-        this.setLocation(x - xx, y - xy); // lokasi akhir
-    }//GEN-LAST:event_formMouseDragged
-
-    private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
-        
-        try {
-            char[] pass = password.getPassword();
-            String nisDB = null;
-            String nameDB = null;
-            String passDB = null;
-            String roleDB = null;
-            int found = 0;
-            
-            String query = "SELECT * FROM pengguna WHERE nis = ? ";
-            PreparedStatement pst = conn.prepareStatement(query); // Membuat Statement untuk mengeksekusi query
-            pst.setString(1, nis.getText());
-            ResultSet rs = pst.executeQuery(); // Menjalankan query dan menyimpan hasilnya dalam ResultSet
-            
-            while(rs.next()) {
-                nisDB = rs.getString("nis");
-                nameDB =  rs.getString("name");
-                passDB = rs.getString("password");
-                roleDB = rs.getString("role");
-                found = 1;
-            }
-            
-            if(found == 1 && Arrays.equals(pass, passDB.toCharArray())){
-                if("admin".equalsIgnoreCase(roleDB)) {
-                    DashboardAdmin admin = new DashboardAdmin(nameDB);
-                    admin.setVisible(true);
-                } else if("siswa".equalsIgnoreCase(roleDB)) {
-                    DashboardSiswa siswa = new DashboardSiswa(nameDB);
-                    siswa.setVisible(true);
-                }
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Wrong NIS or password!", "Message", JOptionPane.ERROR_MESSAGE);
-                nis.setText("NIS");
-                password.setText("Password");
-                password.setEchoChar((char)0);
-                
-                foto_login.requestFocusInWindow();
-            }
-            
-            rs.close();
-            
-        } catch(Exception e){
-            e.printStackTrace();
+    private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
+        if (mainFrame.getExtendedState() != mainFrame.MAXIMIZED_BOTH) {
+            mainFrame.setExtendedState(mainFrame.MAXIMIZED_BOTH);
+        } else {
+            mainFrame.setExtendedState(mainFrame.NORMAL);
         }
-        
-         
-    }//GEN-LAST:event_button_loginActionPerformed
+    }//GEN-LAST:event_maximizeMouseClicked
 
-    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
+        mainFrame.dispose(); // untuk close
+    }//GEN-LAST:event_exitMouseClicked
+
+    private void nisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusGained
+        String nis_focus = nis.getText();
+        if (nis_focus.equals("NIS")) {
+            nis.setText("");
+        }
+    }//GEN-LAST:event_nisFocusGained
+
+    private void nisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusLost
+        String email_lost = nis.getText();
+        if (email_lost.equals("") || email_lost.equals("NIS")) {
+            nis.setText("NIS");
+        }
+    }//GEN-LAST:event_nisFocusLost
+
+    private void nisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordActionPerformed
+    }//GEN-LAST:event_nisActionPerformed
 
     private void passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusGained
         String password_focus = password.getText();
-        if(password_focus.equals("Password")) {
+        if (password_focus.equals("Password")) {
             password.setText("");
             password.setEchoChar('*'); // saat menginput, karakter yang ditampilkan adalah "*"
         }
@@ -394,102 +334,60 @@ public class Form_login extends javax.swing.JFrame {
 
     private void passwordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordFocusLost
         String password_lost = password.getText();
-        if(password_lost.equals("") || password_lost.equals("Password")) {
+        if (password_lost.equals("") || password_lost.equals("Password")) {
             password.setText("Password");
-            password.setEchoChar((char)0); // menampilkan teks biasa
+            password.setEchoChar((char) 0); // menampilkan teks biasa
         }
     }//GEN-LAST:event_passwordFocusLost
 
-    private void show_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_passwordActionPerformed
-        if(show_password.isSelected()){
-            password.setEchoChar((char)0);
-        } else {
-            password.setEchoChar('*');
-        }
-        
-    }//GEN-LAST:event_show_passwordActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordActionPerformed
 
     private void show_passwordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_show_passwordFocusGained
         // TODO add your handling code here:
     }//GEN-LAST:event_show_passwordFocusGained
 
-    private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
-        if(this.getExtendedState()!= Form_login.MAXIMIZED_BOTH) {
-            this.setExtendedState(Form_login.MAXIMIZED_BOTH);
+    private void show_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_passwordActionPerformed
+        if (show_password.isSelected()) {
+            password.setEchoChar((char) 0);
         } else {
-            this.setExtendedState(Form_login.NORMAL);
+            password.setEchoChar('*');
         }
-    }//GEN-LAST:event_maximizeMouseClicked
 
-    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
-        this.setState(Form_login.ICONIFIED);
-    }//GEN-LAST:event_minimizeMouseClicked
+    }//GEN-LAST:event_show_passwordActionPerformed
 
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        dispose(); // untuk close
-    }//GEN-LAST:event_exitMouseClicked
+    private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        Form_register form_register = new Form_register();
-        form_register.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void nisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nisActionPerformed
-
-    private void nisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusGained
-        String nis_focus = nis.getText();
-        if(nis_focus.equals("NIS")) {
-            nis.setText("");
-        }
-    }//GEN-LAST:event_nisFocusGained
-
-    private void nisFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusLost
-        String email_lost = nis.getText();
-        if(email_lost.equals("")||email_lost.equals("NIS")) {
-            nis.setText("NIS");
-        }
-    }//GEN-LAST:event_nisFocusLost
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            Pengguna userLogged = PenggunaDAO.login(nis.getText(), password.getPassword());
+
+            if (userLogged == null) {
+                JOptionPane.showMessageDialog(null, "Wrong NIS or password!", "Message", JOptionPane.ERROR_MESSAGE);
+                nis.setText("NIS");
+                password.setText("Password");
+                password.setEchoChar((char) 0);
+
+                foto_login.requestFocusInWindow();
+            } else {
+                if (userLogged.getRole().equalsIgnoreCase("admin")) {
+                    new DashboardAdmin(userLogged).setVisible(true);
+                    mainFrame.dispose();
+                } else if (userLogged.getRole().equalsIgnoreCase("siswa")) {
+
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Form_login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Form_login().setVisible(true);
-            }
-        });
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_button_loginActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        mainFrame.register();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content;
@@ -503,7 +401,6 @@ public class Form_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel login_title;
     private javax.swing.JPanel logopanel;

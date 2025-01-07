@@ -1,5 +1,6 @@
-package kuisonline;
+package kuisonline.util;
 
+import kuisonline.*;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
