@@ -37,7 +37,7 @@ public class Dashboard extends javax.swing.JPanel {
      */
     public Dashboard(DashboardSiswa mainPanel) {
         this.mainPanel = mainPanel;
-        
+
         initComponents();
 
         setMapelComboBox();
@@ -65,7 +65,7 @@ public class Dashboard extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         for (Kuis k : daftarKuis) {
             try {
                 k.setPertanyaan(PertanyaanDAO.getAllPertanyaanByIdKuis(k.getIdKuis()));
@@ -116,7 +116,7 @@ public class Dashboard extends javax.swing.JPanel {
             judulKuis.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
             judulKuis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             judulKuis.setText(k.getJudul());
-            
+
             javax.swing.JLabel jumlahSoal = new javax.swing.JLabel();
             jumlahSoal.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
             jumlahSoal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -146,6 +146,11 @@ public class Dashboard extends javax.swing.JPanel {
             });
 
             container.add(kuisCard);
+        }
+
+        // Mengisi kekosongan
+        for (int i = kuisTerlihat.size(); i < 8; i++) {
+            container.add(new javax.swing.JLabel());  // Komponen kosong untuk mengisi grid
         }
 
         DaftarKuis.add(container, "card2");
@@ -276,7 +281,8 @@ public class Dashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_previousActionPerformed
 
     private void pilihmapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pilihmapelActionPerformed
-        this.idKategori = ((ComboItem)pilihmapel.getSelectedItem()).getId();
+        this.idKategori = ((ComboItem) pilihmapel.getSelectedItem()).getId();
+        page = 1;
         refreshKuisPanel();
     }//GEN-LAST:event_pilihmapelActionPerformed
 
