@@ -16,6 +16,7 @@ import kuisonline.controller.PertanyaanDAO;
 import kuisonline.model.Kategori;
 import kuisonline.model.Kuis;
 import kuisonline.model.Pertanyaan;
+import kuisonline.util.ComboItem;
 
 /**
  *
@@ -53,7 +54,7 @@ public class BuatKuis extends javax.swing.JPanel {
     void setKategori() {
         try {
             for (Kategori k : KategoriDAO.getAllKategori()) {
-                Input_KategoriKuis.addItem(k.getNamaKategori());
+                Input_KategoriKuis.addItem(new ComboItem(k.getIdKategori(), k.getNamaKategori()));
             }
         } catch (SQLException ex) {
             Logger.getLogger(BuatKuis.class.getName()).log(Level.SEVERE, null, ex);
@@ -222,7 +223,6 @@ public class BuatKuis extends javax.swing.JPanel {
         KategoriSoal1.setBackground(new java.awt.Color(255, 255, 255));
         KategoriSoal1.setLayout(new java.awt.BorderLayout());
 
-        Input_KategoriKuis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
         KategoriSoal1.add(Input_KategoriKuis, java.awt.BorderLayout.CENTER);
 
         jLabel16.setText("Kategori Kuis");
@@ -243,7 +243,7 @@ public class BuatKuis extends javax.swing.JPanel {
         WaktuPengerjaan2.setLayout(new java.awt.BorderLayout());
         WaktuPengerjaan2.add(Input_WaktuPengerjaan, java.awt.BorderLayout.CENTER);
 
-        jLabel18.setText("Waktu Pengerjaan (Menit)");
+        jLabel18.setText("Waktu Pengerjaan Per Soal");
         WaktuPengerjaan2.add(jLabel18, java.awt.BorderLayout.PAGE_START);
 
         InputGroup2.add(WaktuPengerjaan2);
@@ -414,7 +414,7 @@ public class BuatKuis extends javax.swing.JPanel {
         int jumlahSoal;
 
         judulKuis = Input_JudulKuis.getText();
-        kategoriKuis = Input_KategoriKuis.getSelectedIndex();
+        kategoriKuis = ((ComboItem) Input_KategoriKuis.getSelectedItem()).getId();
         waktuPengerjaan = (int) Input_WaktuPengerjaan.getValue();
 
         // Buat kuis dan pertanyaan(Menginisialisasikan Kuis dan Pertanyaan)
@@ -568,7 +568,7 @@ public class BuatKuis extends javax.swing.JPanel {
     private javax.swing.JPanel InputGroup2;
     private javax.swing.JTextField Input_JudulKuis;
     private javax.swing.JSpinner Input_JumlahSoal;
-    private javax.swing.JComboBox<String> Input_KategoriKuis;
+    private javax.swing.JComboBox<ComboItem> Input_KategoriKuis;
     private javax.swing.JSpinner Input_WaktuPengerjaan;
     private javax.swing.JPanel JudulSoal2;
     private javax.swing.JPanel KategoriSoal1;

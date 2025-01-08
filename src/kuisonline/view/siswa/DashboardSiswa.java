@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package kuisonline.view.admin;
+package kuisonline.view.siswa;
 
 import kuisonline.MainFrame;
 import kuisonline.model.Kuis;
@@ -12,37 +12,40 @@ import kuisonline.model.Pengguna;
  *
  * @author TUF GAMING
  */
-public class DashboardAdmin extends javax.swing.JPanel {
+public class DashboardSiswa extends javax.swing.JPanel {
 
     private Pengguna userLogged;
-    
+
     private MainFrame mainFrame;
+    private Dashboard dashboard = new Dashboard(this);
+    private KuisDetail kuisDetail = new KuisDetail(this);
+    private JawabKuis jawabKuis = new JawabKuis(this);
 
     private java.awt.CardLayout cardLayout = new java.awt.CardLayout();
-    private Dashboard dashboard = new Dashboard(this);
-    private BuatKuis buatKuis = new BuatKuis();
-    private KuisDetail kuisDetail = new KuisDetail(this);
-    private EditKuis editKuis = new EditKuis(this);
 
     /**
      * Creates new form DashboardAdmin
      */
-    public DashboardAdmin(MainFrame mainFrame) {
+    public DashboardSiswa(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
-            
+
         initComponents();
 
         MainContent.setLayout(cardLayout);
         MainContent.add(dashboard, "Dashboard");
-        MainContent.add(buatKuis, "BuatKuis");
         MainContent.add(kuisDetail, "KuisDetail");
-        MainContent.add(editKuis, "EditKuis");
+        MainContent.add(jawabKuis, "JawabKuis");
+
     }
 
     public void setUser(Pengguna userLogged) {
         this.userLogged = userLogged;
-        
+
         hellotext.setText("Halo " + userLogged.getName() + "!");
+    }
+    
+    public Pengguna getUser() {
+        return userLogged;
     }
 
     public void dashboard() {
@@ -50,19 +53,14 @@ public class DashboardAdmin extends javax.swing.JPanel {
         dashboard.refreshKuisPanel();
     }
 
-    public void buatKuis() {
-        cardLayout.show(MainContent, "BuatKuis");
-        buatKuis.reset();
-    }
-
     public void kuisDetail(Kuis kuis) {
         cardLayout.show(MainContent, "KuisDetail");
         kuisDetail.setKuisDetail(kuis);
     }
 
-    public void editKuis(Kuis kuis) {
-        cardLayout.show(MainContent, "EditKuis");
-        editKuis.setKuis(kuis);
+    public void jawabKuis(Kuis kuis) {
+        cardLayout.show(MainContent, "JawabKuis");
+        jawabKuis.setKuis(kuis);
     }
 
     /**
@@ -80,8 +78,6 @@ public class DashboardAdmin extends javax.swing.JPanel {
         MenuItem = new javax.swing.JPanel();
         MenuItem_Dashboard = new javax.swing.JPanel();
         DashboardText = new javax.swing.JLabel();
-        MenuItem_TambahSoal = new javax.swing.JPanel();
-        TambahSoalText = new javax.swing.JLabel();
         Logout = new javax.swing.JPanel();
         TambahSoalText1 = new javax.swing.JLabel();
         MainContent = new javax.swing.JPanel();
@@ -96,7 +92,7 @@ public class DashboardAdmin extends javax.swing.JPanel {
         hellotext.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         hellotext.setForeground(new java.awt.Color(255, 255, 255));
         hellotext.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        hellotext.setText("Halo, admin!");
+        hellotext.setText("Halo, siswa!");
         TopBar.add(hellotext, "card2");
 
         add(TopBar, java.awt.BorderLayout.PAGE_START);
@@ -123,26 +119,9 @@ public class DashboardAdmin extends javax.swing.JPanel {
 
         MenuItem.add(MenuItem_Dashboard);
 
-        MenuItem_TambahSoal.setBackground(new java.awt.Color(55, 58, 73));
-        MenuItem_TambahSoal.setPreferredSize(new java.awt.Dimension(100, 40));
-        MenuItem_TambahSoal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuItem_TambahSoalMouseClicked(evt);
-            }
-        });
-        MenuItem_TambahSoal.setLayout(new java.awt.CardLayout(10, 10));
-
-        TambahSoalText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        TambahSoalText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/add_post.png"))); // NOI18N
-        TambahSoalText.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        MenuItem_TambahSoal.add(TambahSoalText, "card2");
-
-        MenuItem.add(MenuItem_TambahSoal);
-
         SideBar.add(MenuItem, java.awt.BorderLayout.PAGE_START);
 
         Logout.setBackground(new java.awt.Color(55, 58, 73));
-        Logout.setPreferredSize(new java.awt.Dimension(60, 60));
         Logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LogoutMouseClicked(evt);
@@ -169,13 +148,9 @@ public class DashboardAdmin extends javax.swing.JPanel {
         dashboard();
     }//GEN-LAST:event_MenuItem_DashboardMouseClicked
 
-    private void MenuItem_TambahSoalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuItem_TambahSoalMouseClicked
-        buatKuis();
-    }//GEN-LAST:event_MenuItem_TambahSoalMouseClicked
-
     private void LogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogoutMouseClicked
         this.userLogged = null;
-        
+
         mainFrame.login();
     }//GEN-LAST:event_LogoutMouseClicked
 
@@ -186,9 +161,7 @@ public class DashboardAdmin extends javax.swing.JPanel {
     private javax.swing.JPanel MainContent;
     private javax.swing.JPanel MenuItem;
     private javax.swing.JPanel MenuItem_Dashboard;
-    private javax.swing.JPanel MenuItem_TambahSoal;
     private javax.swing.JPanel SideBar;
-    private javax.swing.JLabel TambahSoalText;
     private javax.swing.JLabel TambahSoalText1;
     private javax.swing.JPanel TopBar;
     private javax.swing.JLabel hellotext;

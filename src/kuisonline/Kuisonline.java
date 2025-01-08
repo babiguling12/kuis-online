@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import kuisonline.view.Auth;
 
 /**
  *
@@ -28,7 +27,7 @@ public class Kuisonline {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Auth().setVisible(true);
+                new MainFrame().setVisible(true);
             }
         });
     }

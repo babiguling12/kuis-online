@@ -4,6 +4,7 @@
  */
 package kuisonline.view;
 
+import kuisonline.MainFrame;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import kuisonline.util.ResizeImage;
@@ -16,12 +17,12 @@ import kuisonline.model.Pengguna;
  */
 public class Register extends javax.swing.JPanel {
 
-    private Auth mainFrame;
+    private MainFrame mainFrame;
 
     /**
      * Creates new form Login
      */
-    public Register(Auth mainFrame) {
+    public Register(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
 
         initComponents();
@@ -73,7 +74,6 @@ public class Register extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         foto_register = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -85,7 +85,6 @@ public class Register extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jexit = new javax.swing.JLabel();
-        jmaximize = new javax.swing.JLabel();
         jminimize = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -165,8 +164,6 @@ public class Register extends javax.swing.JPanel {
             }
         });
 
-        jmaximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/maximize.png"))); // NOI18N
-
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel6.setText("I have an account");
@@ -195,9 +192,7 @@ public class Register extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jminimize, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jmaximize)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(38, 38, 38)
                 .addComponent(jexit)
                 .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
@@ -248,9 +243,7 @@ public class Register extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jexit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jmaximize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jexit, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(24, 24, 24))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jminimize)
@@ -377,7 +370,6 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jexit;
-    private javax.swing.JLabel jmaximize;
     private javax.swing.JLabel jminimize;
     private javax.swing.JTextField jname;
     private javax.swing.JTextField jnis;

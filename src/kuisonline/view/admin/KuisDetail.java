@@ -5,10 +5,15 @@
 package kuisonline.view.admin;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import kuisonline.controller.HasilKuisDAO;
 import kuisonline.controller.KuisDAO;
+import kuisonline.controller.PenggunaDAO;
+import kuisonline.model.HasilKuis;
 import kuisonline.model.Kuis;
 
 /**
@@ -17,15 +22,17 @@ import kuisonline.model.Kuis;
  */
 public class KuisDetail extends javax.swing.JPanel {
 
+    private DefaultTableModel tm;
     private Kuis kuis;
+    private List<HasilKuis> hasil;
 
-    private DashboardAdmin mainFrame;
+    private DashboardAdmin mainPanel;
 
     /**
      * Creates new form KuisDetail
      */
-    public KuisDetail(DashboardAdmin mainFrame) {
-        this.mainFrame = mainFrame;
+    public KuisDetail(DashboardAdmin mainPanel) {
+        this.mainPanel = mainPanel;
 
         initComponents();
     }
@@ -34,6 +41,44 @@ public class KuisDetail extends javax.swing.JPanel {
         this.kuis = kuis;
 
         judulKuis.setText(kuis.getJudul());
+        
+        hasilKuis();
+    }
+
+    void hasilKuis() {
+        tm = new DefaultTableModel(new Object[]{"No", "Nama Siswa", "Total Benar", "Nilai"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // Mengembalikan false agar semua sel tidak bisa diedit
+                return false;
+            }
+        };
+        
+        tabelHasil.setModel(tm);
+        tm.getDataVector().removeAllElements();
+        
+        try {
+            hasil = HasilKuisDAO.getHasilKuisByKuis(kuis.getIdKuis());
+        } catch (SQLException ex) {
+            Logger.getLogger(KuisDetail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(hasil != null) {
+            int i = 0;
+            for(HasilKuis h : hasil) {
+                String namaSiswa = PenggunaDAO.getPenggunaByID(h.getIdPengguna()).getName();
+                String totalBenar = h.getTotalBenar() + "/" + kuis.getJumlahPertanyaan();
+                String nilai = ((int) Math.ceil((double)h.getTotalBenar()/kuis.getJumlahPertanyaan()*100)) + "/100";
+                
+                Object[] data = {
+                    ++i,
+                    namaSiswa,
+                    totalBenar,
+                    nilai
+                };
+                tm.addRow(data);
+            }
+        }
     }
 
     /**
@@ -49,13 +94,16 @@ public class KuisDetail extends javax.swing.JPanel {
         back = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         judulKuis = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         edit = new javax.swing.JButton();
         hapus = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelHasil = new javax.swing.JTable();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -82,21 +130,6 @@ public class KuisDetail extends javax.swing.JPanel {
 
         add(Header_BuatSoal, java.awt.BorderLayout.PAGE_START);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
@@ -121,14 +154,41 @@ public class KuisDetail extends javax.swing.JPanel {
         jPanel2.add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
         add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        jPanel5.setLayout(new java.awt.BorderLayout());
+
+        jPanel6.setLayout(new java.awt.CardLayout(10, 0));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Hasil");
+        jPanel6.add(jLabel1, "card2");
+
+        jPanel5.add(jPanel6, java.awt.BorderLayout.PAGE_START);
+
+        tabelHasil.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelHasil);
+
+        jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        add(jPanel5, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editActionPerformed
-        mainFrame.editKuis(kuis);
+        mainPanel.editKuis(kuis);
     }//GEN-LAST:event_editActionPerformed
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
-        mainFrame.dashboard();
+        mainPanel.dashboard();
     }//GEN-LAST:event_backActionPerformed
 
     private void hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusActionPerformed
@@ -146,8 +206,8 @@ public class KuisDetail extends javax.swing.JPanel {
             } catch (SQLException ex) {
                 Logger.getLogger(KuisDetail.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            mainFrame.dashboard();
+
+            mainPanel.dashboard();
         }
     }//GEN-LAST:event_hapusActionPerformed
 
@@ -157,12 +217,15 @@ public class KuisDetail extends javax.swing.JPanel {
     private javax.swing.JButton back;
     private javax.swing.JButton edit;
     private javax.swing.JButton hapus;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel judulKuis;
+    private javax.swing.JTable tabelHasil;
     // End of variables declaration//GEN-END:variables
 }

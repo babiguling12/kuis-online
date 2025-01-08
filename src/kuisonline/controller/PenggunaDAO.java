@@ -35,22 +35,37 @@ public class PenggunaDAO {
         }
         return null;
     }
-    
-    public static boolean registerPengguna(Pengguna pengguna) throws SQLException {
-    String query = "INSERT INTO pengguna (name, nis, password, role) VALUES (?, ?, ?, ?)";
-    
-    try (Connection connection = Koneksi.getConnection();
-         PreparedStatement statement = connection.prepareStatement(query)) {
-        // Set parameter untuk query
-        statement.setString(1, pengguna.getName());
-        statement.setString(2, pengguna.getNis());
-        statement.setString(3, pengguna.getPassword()); // Password di-hash jika perlu
-        statement.setString(4, "siswa"); // "siswa" atau "admin"
-        
-        // Eksekusi query
-        int rowsInserted = statement.executeUpdate();
-        return rowsInserted > 0; // Return true jika berhasil, false jika gagal
+
+    public static Pengguna getPenggunaByID(int id) {
+        String query = "SELECT * FROM pengguna WHERE id_pengguna = ?";
+        try (Connection conn = Koneksi.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Pengguna(rs.getInt("id_pengguna"), rs.getString("name"), rs.getString("nis"), rs.getString("role"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
-}
+
+    public static boolean registerPengguna(Pengguna pengguna) throws SQLException {
+        String query = "INSERT INTO pengguna (name, nis, password, role) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = Koneksi.getConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
+            // Set parameter untuk query
+            statement.setString(1, pengguna.getName());
+            statement.setString(2, pengguna.getNis());
+            statement.setString(3, pengguna.getPassword()); // Password di-hash jika perlu
+            statement.setString(4, "siswa"); // "siswa" atau "admin"
+
+            // Eksekusi query
+            int rowsInserted = statement.executeUpdate();
+            return rowsInserted > 0; // Return true jika berhasil, false jika gagal
+        }
+    }
 
 }

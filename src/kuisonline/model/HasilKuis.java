@@ -10,7 +10,7 @@ package kuisonline.model;
  */
 public class HasilKuis {
     private int idHasil;
-    private int nilai;
+    private int total_benar;
     private int idKuis;
     private int idPengguna;
     
@@ -24,12 +24,12 @@ public class HasilKuis {
     }
 
     // Getter dan Setter untuk nilai
-    public int getNilai() {
-        return nilai;
+    public int getTotalBenar() {
+        return total_benar;
     }
 
-    public void setNilai(int nilai) {
-        this.nilai = nilai;
+    public void setTotalBenar(int total_benar) {
+        this.total_benar = total_benar;
     }
 
     // Getter dan Setter untuk idKuis

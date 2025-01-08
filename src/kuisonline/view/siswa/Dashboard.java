@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package kuisonline.view.admin;
+package kuisonline.view.siswa;
 
+import kuisonline.view.admin.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +30,12 @@ public class Dashboard extends javax.swing.JPanel {
 
     private javax.swing.JPanel container;
 
-    private DashboardAdmin mainPanel;
+    private DashboardSiswa mainPanel;
 
     /**
      * Creates new form Dashboard
      */
-    public Dashboard(DashboardAdmin mainPanel) {
+    public Dashboard(DashboardSiswa mainPanel) {
         this.mainPanel = mainPanel;
         
         initComponents();
@@ -44,7 +45,7 @@ public class Dashboard extends javax.swing.JPanel {
     }
 
     void setMapelComboBox() {
-        pilihmapel.addItem(new ComboItem(0, "Semua Mapel"));        
+        pilihmapel.addItem(new ComboItem(0, "Semua Mapel"));
         try {
             for (Kategori k : KategoriDAO.getAllKategori()) {
                 pilihmapel.addItem(new ComboItem(k.getIdKategori(), k.getNamaKategori()));

@@ -4,12 +4,12 @@
  */
 package kuisonline.view;
 
+import kuisonline.MainFrame;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import kuisonline.util.ResizeImage;
 import kuisonline.controller.PenggunaDAO;
 import kuisonline.model.Pengguna;
-import kuisonline.view.admin.DashboardAdmin;
 
 /**
  *
@@ -17,16 +17,16 @@ import kuisonline.view.admin.DashboardAdmin;
  */
 public class Login extends javax.swing.JPanel {
 
-    private Auth mainFrame;
+    private MainFrame mainFrame;
 
     /**
      * Creates new form Login
      */
-    public Login(Auth mainFrame) {
+    public Login(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
 
         initComponents();
-        
+
         ResizeImage.setImageToLabel(foto_login, "/kuisonline/assets/Logo-Politeknik-Negeri-Bali.png", 174, 170);
 
         password.setText("Password");
@@ -83,13 +83,6 @@ public class Login extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        Header = new javax.swing.JPanel();
-        minbtn = new javax.swing.JPanel();
-        minimize = new javax.swing.JLabel();
-        maxbtn = new javax.swing.JPanel();
-        maximize = new javax.swing.JLabel();
-        exitbtn = new javax.swing.JPanel();
-        exit = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
         foto_login = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -106,58 +99,6 @@ public class Login extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
-
-        Header.setBackground(new java.awt.Color(204, 204, 255));
-        Header.setPreferredSize(new java.awt.Dimension(500, 30));
-        Header.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 0, 0));
-
-        minbtn.setBackground(new java.awt.Color(204, 204, 255));
-        minbtn.setPreferredSize(new java.awt.Dimension(30, 30));
-        minbtn.setLayout(new java.awt.BorderLayout());
-
-        minimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/minimize.png"))); // NOI18N
-        minimize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                minimizeMouseClicked(evt);
-            }
-        });
-        minbtn.add(minimize, java.awt.BorderLayout.CENTER);
-
-        Header.add(minbtn);
-
-        maxbtn.setBackground(new java.awt.Color(204, 204, 255));
-        maxbtn.setLayout(new java.awt.BorderLayout());
-
-        maximize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        maximize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/maximize.png"))); // NOI18N
-        maximize.setPreferredSize(new java.awt.Dimension(30, 30));
-        maximize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                maximizeMouseClicked(evt);
-            }
-        });
-        maxbtn.add(maximize, java.awt.BorderLayout.CENTER);
-
-        Header.add(maxbtn);
-
-        exitbtn.setBackground(new java.awt.Color(204, 204, 255));
-        exitbtn.setLayout(new java.awt.BorderLayout());
-
-        exit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kuisonline/assets/exit.png"))); // NOI18N
-        exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exit.setPreferredSize(new java.awt.Dimension(30, 30));
-        exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitMouseClicked(evt);
-            }
-        });
-        exitbtn.add(exit, java.awt.BorderLayout.CENTER);
-
-        Header.add(exitbtn);
-
-        add(Header, java.awt.BorderLayout.PAGE_START);
 
         Content.setBackground(new java.awt.Color(253, 253, 253));
         Content.setLayout(new java.awt.BorderLayout());
@@ -290,22 +231,6 @@ public class Login extends javax.swing.JPanel {
         add(Content, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked
-        mainFrame.setState(mainFrame.ICONIFIED);
-    }//GEN-LAST:event_minimizeMouseClicked
-
-    private void maximizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximizeMouseClicked
-        if (mainFrame.getExtendedState() != mainFrame.MAXIMIZED_BOTH) {
-            mainFrame.setExtendedState(mainFrame.MAXIMIZED_BOTH);
-        } else {
-            mainFrame.setExtendedState(mainFrame.NORMAL);
-        }
-    }//GEN-LAST:event_maximizeMouseClicked
-
-    private void exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMouseClicked
-        mainFrame.dispose(); // untuk close
-    }//GEN-LAST:event_exitMouseClicked
-
     private void nisFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nisFocusGained
         String nis_focus = nis.getText();
         if (nis_focus.equals("NIS")) {
@@ -371,10 +296,9 @@ public class Login extends javax.swing.JPanel {
                 foto_login.requestFocusInWindow();
             } else {
                 if (userLogged.getRole().equalsIgnoreCase("admin")) {
-                    new DashboardAdmin(userLogged).setVisible(true);
-                    mainFrame.dispose();
+                    mainFrame.dashboardAdmin(userLogged);
                 } else if (userLogged.getRole().equalsIgnoreCase("siswa")) {
-
+                    mainFrame.dashboardSiswa(userLogged);
                 }
             }
 
@@ -391,10 +315,7 @@ public class Login extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Content;
-    private javax.swing.JPanel Header;
     private javax.swing.JButton button_login;
-    private javax.swing.JLabel exit;
-    private javax.swing.JPanel exitbtn;
     private javax.swing.JPanel form;
     private javax.swing.JLabel foto_login;
     private javax.swing.JLabel jLabel1;
@@ -404,10 +325,6 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel login_title;
     private javax.swing.JPanel logopanel;
-    private javax.swing.JPanel maxbtn;
-    private javax.swing.JLabel maximize;
-    private javax.swing.JPanel minbtn;
-    private javax.swing.JLabel minimize;
     private javax.swing.JTextField nis;
     private javax.swing.JPasswordField password;
     private javax.swing.JCheckBox show_password;
