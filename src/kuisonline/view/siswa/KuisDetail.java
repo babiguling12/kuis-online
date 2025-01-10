@@ -42,6 +42,7 @@ public class KuisDetail extends javax.swing.JPanel {
             waktu.setText(hasilKuis.getTotalBenar() + "/" + kuis.getJumlahPertanyaan());
             mulai.setEnabled(false);
         } else {
+            mulai.setEnabled(true);
             waktu.setText(kuis.getWaktuPengerjaan() + " Detik/Soal");
         }
     }

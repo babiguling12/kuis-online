@@ -32,7 +32,6 @@ public class Login extends javax.swing.JPanel {
         password.setText("Password");
         password.setEchoChar((char) 0);
 
-        foto_login.requestFocusInWindow();
 
         nis.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
@@ -71,6 +70,12 @@ public class Login extends javax.swing.JPanel {
                 }
             }
         });
+    }
+
+    public void reset() {
+        nis.setText("NIS");
+        password.setText("Password");
+        password.setEchoChar((char) 0);
     }
 
     /**

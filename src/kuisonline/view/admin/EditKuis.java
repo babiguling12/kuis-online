@@ -27,7 +27,7 @@ public class EditKuis extends javax.swing.JPanel {
     private DefaultTableModel tm;
     private Kuis kuis;
     private List<Pertanyaan> daftarPertanyaan = new ArrayList<>();
-    
+
     private DashboardAdmin mainPanel;
 
     /**
@@ -35,23 +35,22 @@ public class EditKuis extends javax.swing.JPanel {
      */
     public EditKuis(DashboardAdmin mainPanel) {
         this.mainPanel = mainPanel;
-        
+
         initComponents();
 
-        setKategori();
         refreshTableDaftarSoal();
     }
 
     void setKuis(Kuis kuis) {
         this.kuis = kuis;
-        
+
+        setKategori();
         setFormValue();
         refreshTableDaftarSoal();
     }
-    
+
     void setFormValue() {
         Input_JudulKuis.setText(kuis.getJudul());
-        Input_KategoriKuis.setSelectedIndex(kuis.getIdKategori());
         Input_JumlahSoal.setValue(kuis.getJumlahPertanyaan());
         Input_WaktuPengerjaan.setValue(kuis.getWaktuPengerjaan());
     }
@@ -59,7 +58,11 @@ public class EditKuis extends javax.swing.JPanel {
     void setKategori() {
         try {
             for (Kategori k : KategoriDAO.getAllKategori()) {
-                Input_KategoriKuis.addItem(new ComboItem(k.getIdKategori(), k.getNamaKategori()));
+                ComboItem item = new ComboItem(k.getIdKategori(), k.getNamaKategori());
+                Input_KategoriKuis.addItem(item);
+                if (kuis.getIdKategori() == k.getIdKategori()) {
+                    Input_KategoriKuis.setSelectedItem(item);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(EditKuis.class.getName()).log(Level.SEVERE, null, ex);
@@ -428,7 +431,7 @@ public class EditKuis extends javax.swing.JPanel {
         int jumlahSoal;
 
         judulKuis = Input_JudulKuis.getText();
-        kategoriKuis = ((ComboItem)Input_KategoriKuis.getSelectedItem()).getId();
+        kategoriKuis = ((ComboItem) Input_KategoriKuis.getSelectedItem()).getId();
         waktuPengerjaan = (int) Input_WaktuPengerjaan.getValue();
 
         kuis.setJudul(judulKuis);

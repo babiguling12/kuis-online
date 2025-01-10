@@ -47,10 +47,12 @@ public class MainFrame extends javax.swing.JFrame {
     
     public void login() {
         cardLayout.show(Content, "LoginPage");
+        login.reset();
     }
 
     public void register() {
         cardLayout.show(Content, "RegisterPage");
+        register.reset();
     }
     
     public void dashboardAdmin(Pengguna userLogged) {
