@@ -40,7 +40,7 @@ public class DashboardSiswa extends javax.swing.JPanel {
 
     public void setUser(Pengguna userLogged) {
         this.userLogged = userLogged;
-
+        dashboard();
         hellotext.setText("Halo " + userLogged.getName() + "!");
     }
     
@@ -50,7 +50,7 @@ public class DashboardSiswa extends javax.swing.JPanel {
 
     public void dashboard() {
         cardLayout.show(MainContent, "Dashboard");
-        dashboard.refreshKuisPanel();
+        dashboard.reset();
     }
 
     public void kuisDetail(Kuis kuis) {

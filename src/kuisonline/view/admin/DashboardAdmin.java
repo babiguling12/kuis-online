@@ -41,13 +41,13 @@ public class DashboardAdmin extends javax.swing.JPanel {
 
     public void setUser(Pengguna userLogged) {
         this.userLogged = userLogged;
-        
+        dashboard();
         hellotext.setText("Halo " + userLogged.getName() + "!");
     }
 
     public void dashboard() {
         cardLayout.show(MainContent, "Dashboard");
-        dashboard.refreshKuisPanel();
+        dashboard.reset();
     }
 
     public void buatKuis() {

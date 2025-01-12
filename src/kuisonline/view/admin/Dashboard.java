@@ -43,6 +43,11 @@ public class Dashboard extends javax.swing.JPanel {
         refreshKuisPanel();
     }
 
+    void reset() {
+        page = 1;
+        refreshKuisPanel();
+    }
+
     void setMapelComboBox() {
         pilihmapel.addItem(new ComboItem(0, "Semua Mapel"));
         try {
