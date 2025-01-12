@@ -45,6 +45,8 @@ public class JawabKuis extends javax.swing.JPanel {
     void setKuis(Kuis kuis) {
         this.kuis = kuis;
         
+        nomorsoal = 1;
+        terjawabBenar = 0;
         setPertanyaan();
     }
 

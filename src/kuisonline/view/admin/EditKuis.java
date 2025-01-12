@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import kuisonline.controller.KategoriDAO;
 import kuisonline.controller.KuisDAO;
+import kuisonline.controller.HasilKuisDAO;
 import kuisonline.controller.PertanyaanDAO;
 import kuisonline.model.Kategori;
 import kuisonline.model.Kuis;
@@ -458,7 +459,7 @@ public class EditKuis extends javax.swing.JPanel {
         try {
             KuisDAO.updateKuis(kuis);
             JOptionPane.showMessageDialog(null, "Kuis Berhasil diupdate", "success", JOptionPane.INFORMATION_MESSAGE);
-            
+            HasilKuisDAO.deleteHasilKuisByKuis(kuis.getIdKuis());
         } catch (SQLException ex) {
             Logger.getLogger(EditKuis.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -466,11 +467,11 @@ public class EditKuis extends javax.swing.JPanel {
         // Simpan Pertanyaan
         try {
             PertanyaanDAO.updateListPertanyan(kuis.getPertanyaan());
-            mainPanel.kuisDetail(kuis);
         } catch (SQLException ex) {
             Logger.getLogger(EditKuis.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        mainPanel.kuisDetail(kuis);
         refreshTableDaftarSoal();
     }//GEN-LAST:event_simpankuisActionPerformed
 

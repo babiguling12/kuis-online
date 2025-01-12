@@ -86,4 +86,13 @@ public class HasilKuisDAO {
         }
         return hasilKuisList;
     }
+    
+    // Delete hasil kuis
+    public static void deleteHasilKuisByKuis(int idKuis) throws SQLException {
+        String query = "DELETE FROM hasil_kuis WHERE id_kuis = ?";
+        try (Connection connection = Koneksi.getConnection(); PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, idKuis);
+            statement.executeUpdate();
+        }
+    }
 }
