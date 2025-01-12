@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import kuisonline.controller.KategoriDAO;
 import kuisonline.controller.KuisDAO;
@@ -34,7 +35,7 @@ public class BuatKuis extends javax.swing.JPanel {
     public BuatKuis() {
         initComponents();
 
-        setKategori();
+        setKategori();    
         refreshTableDaftarSoal();
     }
 
@@ -50,8 +51,10 @@ public class BuatKuis extends javax.swing.JPanel {
         setKategori();
 
     }
-
+    
     void setKategori() {
+        Input_KategoriKuis.addItem(new ComboItem(0, "Pilih Mata Pelajaran")); // menambahkan index 0 untuk tampilan saja
+        
         try {
             for (Kategori k : KategoriDAO.getAllKategori()) {
                 Input_KategoriKuis.addItem(new ComboItem(k.getIdKategori(), k.getNamaKategori()));
@@ -59,6 +62,8 @@ public class BuatKuis extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(BuatKuis.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        Input_KategoriKuis.setSelectedIndex(0); // langsung tampilkan tulisan "Pilih Mata Pelajaran" saat halaman pertama kali dibuka
     }
 
     void refreshTableDaftarSoal() {
@@ -212,7 +217,11 @@ public class BuatKuis extends javax.swing.JPanel {
         jLabel15.setText("Judul Kuis");
         JudulSoal2.add(jLabel15, java.awt.BorderLayout.PAGE_START);
 
-        Input_JudulKuis.setText("Judul Kuis");
+        Input_JudulKuis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Input_JudulKuisActionPerformed(evt);
+            }
+        });
         JudulSoal2.add(Input_JudulKuis, java.awt.BorderLayout.CENTER);
 
         Form3.add(JudulSoal2);
@@ -408,14 +417,38 @@ public class BuatKuis extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simpankuisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpankuisActionPerformed
-        String judulKuis;
-        int kategoriKuis;
-        int waktuPengerjaan;
-        int jumlahSoal;
-
-        judulKuis = Input_JudulKuis.getText();
-        kategoriKuis = ((ComboItem) Input_KategoriKuis.getSelectedItem()).getId();
-        waktuPengerjaan = (int) Input_WaktuPengerjaan.getValue();
+        String judulKuis = Input_JudulKuis.getText();
+        int waktuPengerjaan = (int) Input_WaktuPengerjaan.getValue();;
+        int jumlahSoal = (int) Input_JumlahSoal.getValue();
+        
+        ComboItem selectedKategori = (ComboItem) Input_KategoriKuis.getSelectedItem();
+        
+        
+        // Validasi input judul
+        if(judulKuis == null || judulKuis.trim().isEmpty()) { // trim().isEmpty() : ngecek apakah yg diiinput cuma spasi kosong
+            JOptionPane.showMessageDialog(null, "Judul tidak boleh kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Validasi input kategori
+        if(selectedKategori == null || selectedKategori.getId() == 0) {
+            JOptionPane.showMessageDialog(null, "Pilih kategori yang sesuai", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        int kategoriKuis = selectedKategori.getId();
+        
+        // Validasi input jumlah soal
+        if(jumlahSoal <= 0) {
+            JOptionPane.showMessageDialog(null, "Jumlah soal tidak boleh kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Validasi input waktu
+        if(waktuPengerjaan <= 0) {
+            JOptionPane.showMessageDialog(null, "Waktu Pengerjaan tidak boleh kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
 
         // Buat kuis dan pertanyaan(Menginisialisasikan Kuis dan Pertanyaan)
         if (kuis == null) {
@@ -453,6 +486,11 @@ public class BuatKuis extends javax.swing.JPanel {
             // Simpan Kuis
             try {
                 idKuis = KuisDAO.addKuis(kuis);
+                if(idKuis < 0) {
+                    JOptionPane.showMessageDialog(null, "Kuis gagal disimpan", "Failed", JOptionPane.ERROR_MESSAGE);
+                } else {    
+                    JOptionPane.showMessageDialog(null, "Kuis berhasil disimpan", "success", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(BuatKuis.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -558,6 +596,10 @@ public class BuatKuis extends javax.swing.JPanel {
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         reset();
     }//GEN-LAST:event_resetActionPerformed
+
+    private void Input_JudulKuisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Input_JudulKuisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Input_JudulKuisActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

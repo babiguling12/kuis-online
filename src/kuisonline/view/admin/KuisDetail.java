@@ -203,6 +203,7 @@ public class KuisDetail extends javax.swing.JPanel {
         if (response == JOptionPane.YES_OPTION) {
             try {
                 KuisDAO.deleteKuis(kuis.getIdKuis());
+                JOptionPane.showMessageDialog(null, "Kuis berhasil dihapus", "success", JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException ex) {
                 Logger.getLogger(KuisDetail.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -158,6 +158,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(jPanel2, "card2");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void minimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimizeMouseClicked

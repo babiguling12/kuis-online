@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import kuisonline.controller.KategoriDAO;
 import kuisonline.controller.KuisDAO;
@@ -56,6 +57,7 @@ public class EditKuis extends javax.swing.JPanel {
     }
 
     void setKategori() {
+        Input_KategoriKuis.removeAllItems();
         try {
             for (Kategori k : KategoriDAO.getAllKategori()) {
                 ComboItem item = new ComboItem(k.getIdKategori(), k.getNamaKategori());
@@ -425,24 +427,38 @@ public class EditKuis extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void simpankuisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpankuisActionPerformed
-        String judulKuis;
-        int kategoriKuis;
-        int waktuPengerjaan;
-        int jumlahSoal;
-
-        judulKuis = Input_JudulKuis.getText();
-        kategoriKuis = ((ComboItem) Input_KategoriKuis.getSelectedItem()).getId();
-        waktuPengerjaan = (int) Input_WaktuPengerjaan.getValue();
+        String judulKuis = Input_JudulKuis.getText();
+        int kategoriKuis = ((ComboItem) Input_KategoriKuis.getSelectedItem()).getId();
+        int waktuPengerjaan = waktuPengerjaan = (int) Input_WaktuPengerjaan.getValue();;
+        int jumlahSoal = (int) Input_JumlahSoal.getValue();
 
         kuis.setJudul(judulKuis);
         kuis.setWaktuPengerjaan(waktuPengerjaan);
         kuis.setIdKategori(kategoriKuis);
-
-        int idKuis = 0;
+        
+         // Validasi input judul
+        if(judulKuis == null || judulKuis.trim().isEmpty()) { // trim().isEmpty() : ngecek apakah yg diiinput cuma spasi kosong
+            JOptionPane.showMessageDialog(null, "Judul tidak boleh kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Validasi input jumlah soal
+        if(jumlahSoal <= 0) {
+            JOptionPane.showMessageDialog(null, "Jumlah soal tidak boleh kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // Validasi input waktu
+        if(waktuPengerjaan <= 0) {
+            JOptionPane.showMessageDialog(null, "Waktu Pengerjaan tidak boleh kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
         // Update Kuis
         try {
             KuisDAO.updateKuis(kuis);
+            JOptionPane.showMessageDialog(null, "Kuis Berhasil diupdate", "success", JOptionPane.INFORMATION_MESSAGE);
+            
         } catch (SQLException ex) {
             Logger.getLogger(EditKuis.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -450,6 +466,7 @@ public class EditKuis extends javax.swing.JPanel {
         // Simpan Pertanyaan
         try {
             PertanyaanDAO.updateListPertanyan(kuis.getPertanyaan());
+            mainPanel.kuisDetail(kuis);
         } catch (SQLException ex) {
             Logger.getLogger(EditKuis.class.getName()).log(Level.SEVERE, null, ex);
         }
