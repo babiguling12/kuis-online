@@ -44,6 +44,7 @@ public class JawabKuis extends javax.swing.JPanel {
 
     void setKuis(Kuis kuis) {
         this.kuis = kuis;
+        mainPanel.toggleSidebar();
         
         nomorsoal = 1;
         terjawabBenar = 0;
@@ -138,6 +139,7 @@ public class JawabKuis extends javax.swing.JPanel {
             }
             
             mainPanel.kuisDetail(kuis);
+            mainPanel.toggleSidebar();
         } else {
             // Soal Selanjutnya
             nomorsoal++;
@@ -222,6 +224,8 @@ public class JawabKuis extends javax.swing.JPanel {
         jPanel6.setLayout(new java.awt.CardLayout(10, 10));
 
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.LINE_AXIS));
+
+        pilihan.add(pilihana);
         jPanel5.add(pilihana);
 
         jawabana.setEditable(false);
@@ -241,6 +245,8 @@ public class JawabKuis extends javax.swing.JPanel {
         jPanel7.setLayout(new java.awt.CardLayout(10, 10));
 
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.LINE_AXIS));
+
+        pilihan.add(pilihanb);
         jPanel8.add(pilihanb);
 
         jawabanb.setEditable(false);
@@ -260,6 +266,8 @@ public class JawabKuis extends javax.swing.JPanel {
         jPanel9.setLayout(new java.awt.CardLayout(10, 10));
 
         jPanel10.setLayout(new javax.swing.BoxLayout(jPanel10, javax.swing.BoxLayout.LINE_AXIS));
+
+        pilihan.add(pilihanc);
         jPanel10.add(pilihanc);
 
         jawabanc.setEditable(false);
@@ -279,6 +287,8 @@ public class JawabKuis extends javax.swing.JPanel {
         jPanel11.setLayout(new java.awt.CardLayout(10, 10));
 
         jPanel12.setLayout(new javax.swing.BoxLayout(jPanel12, javax.swing.BoxLayout.LINE_AXIS));
+
+        pilihan.add(pilihand);
         jPanel12.add(pilihand);
 
         jawaband.setEditable(false);
@@ -298,6 +308,8 @@ public class JawabKuis extends javax.swing.JPanel {
         jPanel13.setLayout(new java.awt.CardLayout(10, 10));
 
         jPanel14.setLayout(new javax.swing.BoxLayout(jPanel14, javax.swing.BoxLayout.LINE_AXIS));
+
+        pilihan.add(pilihane);
         jPanel14.add(pilihane);
 
         jawabane.setEditable(false);

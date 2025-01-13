@@ -432,7 +432,7 @@ public class BuatKuis extends javax.swing.JPanel {
         
         // Validasi input kategori
         if(selectedKategori == null || selectedKategori.getId() == 0) {
-            JOptionPane.showMessageDialog(null, "Pilih kategori yang sesuai", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Pilih mata pelajaran yang sesuai", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         int kategoriKuis = selectedKategori.getId();
@@ -444,8 +444,8 @@ public class BuatKuis extends javax.swing.JPanel {
         }
         
         // Validasi input waktu
-        if(waktuPengerjaan <= 0) {
-            JOptionPane.showMessageDialog(null, "Waktu Pengerjaan tidak boleh kosong", "Warning", JOptionPane.WARNING_MESSAGE);
+        if(waktuPengerjaan < 0) {
+            JOptionPane.showMessageDialog(null, "Waktu Pengerjaan tidak valid", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
         

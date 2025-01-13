@@ -20,6 +20,8 @@ public class DashboardSiswa extends javax.swing.JPanel {
     private Dashboard dashboard = new Dashboard(this);
     private KuisDetail kuisDetail = new KuisDetail(this);
     private JawabKuis jawabKuis = new JawabKuis(this);
+    
+    private Boolean toggle = true;
 
     private java.awt.CardLayout cardLayout = new java.awt.CardLayout();
 
@@ -46,6 +48,11 @@ public class DashboardSiswa extends javax.swing.JPanel {
     
     public Pengguna getUser() {
         return userLogged;
+    }
+    
+    public void toggleSidebar() {
+        toggle = !toggle;
+        SideBar.setVisible(toggle);
     }
 
     public void dashboard() {
